@@ -1,17 +1,24 @@
-// File: studentGradeGenerator.js
+const readline = require('readline');
 
+// Create an interface to read input
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// Function to prompt the user for input and generate corresponding grades
 function generateStudentGrade() {
-    // Prompt user for input
-    let marks = prompt("Enter student marks (between 0 and 100):");
-  
+  // Prompt user for input
+  rl.question('Enter student marks (between 0 and 100): ', (input) => {
+    // Validate input
+    let marks = parseFloat(input);
+
     if (isNaN(marks) || marks < 0 || marks > 100) {
-      console.log("Invalid input. Marks should be between 0 and 100.");
+      console.log('Invalid input. Marks should be between 0 and 100.');
+      rl.close();
       return;
     }
-  
-    // Convert marks to a number
-    marks = Number(marks);
-  
+
     // Determine grade based on the given criteria
     let grade;
     if (marks > 79) {
@@ -25,10 +32,14 @@ function generateStudentGrade() {
     } else {
       grade = 'E';
     }
-  
+
     // Display the result
     console.log(`Student Grade: ${grade}`);
-  }
-  
-  generateStudentGrade();
-  
+
+    // Close the interface
+    rl.close();
+  });
+}
+
+// Call the function to execute the program
+generateStudentGrade();
