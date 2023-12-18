@@ -12,18 +12,23 @@ function checkSpeed(speed) {
       return;
     }
   
-    // Calculate demerit points
-    let demeritPoints = Math.floor((speed - speedLimit) / pointsPerDemerit);
-  
-    // Check for license suspension
-    if (demeritPoints > maxDemeritPoints) {
-      console.log('License suspended');
+    // Check for speed violation
+    if (speed <= speedLimit) {
+      console.log('Ok');
     } else {
-      console.log(`Points: ${demeritPoints}`);
+      // Calculate demerit points
+      let demeritPoints = Math.floor((speed - speedLimit) / pointsPerDemerit);
+  
+      // Check for license suspension
+      if (demeritPoints > maxDemeritPoints) {
+        console.log('License suspended');
+      } else {
+        console.log(`Points: ${demeritPoints}`);
+      }
     }
   }
   
-  // Example: Change the speed value to test different scenarios
+  // Change the speed value to test different scenarios
   const carSpeed = 80;
   checkSpeed(carSpeed);
-  
+    
